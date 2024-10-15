@@ -2,9 +2,11 @@ package main;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection; // Contiene todos los paquetes que permiten conectarse a redes
 import java.net.URI; // Nos permiten crear la instancia que va a representar la dirección
 import java.net.URL; // Nos permiten crear la instancia que va a representar la dirección
+import java.nio.charset.StandardCharsets;
 
 public class EjemploApi {
   // Esta es la forma tipica, es engorrosa
@@ -31,9 +33,32 @@ public class EjemploApi {
 
       // Configurar el metodo
       // Usamos GET para obtener datos
-      conn.setRequestMethod("GET");
+      // conn.setRequestMethod("GET");
 
       // Configurar el metodo POST
+      // Todo lo que estamos viendo ahora no tiene nada que ver con Java
+      // Son todo cosas propias del protocolo HTTP
+      /*
+       * 
+       conn.setRequestMethod("POST");
+       conn.setRequestProperty("Content-Type", "application/json; utf-8");
+       conn.setRequestProperty("Accept", "application/json");
+       conn.setDoOutput(true);
+       */
+
+      // Definir el cuerpo de la solicitud POST
+      /*
+      String json = "{\"name\": \"Confessions on a Dance Floor\", \"band\": \"Madonna\", \"genre\": \"Dance/Pop\", \"year\": 2005 }";
+      try (OutputStream os = conn.getOutputStream()){
+        // Conversion del arreglo de bytes
+        byte[] input = jsonInputString.getBytes(StandardCharsets.UTF_8);
+        os.write(input, 0, input.length);
+
+      } catch (Exception e) {
+        
+      }
+       * 
+      */
 
       // Leemos la respuesta
       // Esto normalmente viene en bytes, se usa para convertirlo a texto legible
